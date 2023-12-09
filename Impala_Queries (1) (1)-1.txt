@@ -1,0 +1,24 @@
+select * from cricket where scorecard='ODI # 1';
+--Q2a
+select count(distinct scorecard) from cricket;
+--Q2b
+select count(distinct team) from (
+select (team1) as team from cricket
+union all
+select (team2) as team from cricket
+) teams;
+--Q3a
+select winner,count(winner) as wins from cricket  group by winner order by wins desc limit 1;
+--Q3b
+select winner,count(winner) as ODIwon from cricket where YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))>=1981 and
+YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))<=1990 group by winner order by ODIwon desc limit 1;
+
+select winner,count(winner) as ODIwon from cricket where YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))>=1991 and
+YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))<=2000 group by winner order by ODIwon desc limit 1;
+
+select winner,count(winner) as ODIwon from cricket where YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))>=2001 and
+YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))<=2010 group by winner order by ODIwon desc limit 1;
+
+select winner,count(winner) as ODIwon from cricket where YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))>=2011 and
+YEAR(to_date(from_unixtime(UNIX_TIMESTAMP(matchdate,'dd-MMM-yy'))))<=2018 group by winner order by ODIwon desc limit 1;
+
